@@ -5,14 +5,14 @@ export const OpenAIStream = async (prompt: string, apiKey: string) => {
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  const res = await fetch("https://api.fireworks.ai/inference/v1", {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`
     },
     method: "POST",
     body: JSON.stringify({
-      model: OpenAIModel.DAVINCI_TURBO,
+      model: "accounts/fireworks/models/llama-v2-70b-chat",
       messages: [
         { role: "system", content: "You are a helpful assistant that accurately answers the user's queries based on the given text." },
         { role: "user", content: prompt }
